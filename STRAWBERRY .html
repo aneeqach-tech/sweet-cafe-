@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sweet Café 🍓</title>
+
+    <style>
+
+        /* ---------- GENERAL ---------- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Trebuchet MS", sans-serif;
+            background: #fff7fb;
+            color: #4a3040;
+            transition: 0.4s;
+        }
+
+
+        /* ---------- NAVBAR ---------- */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 8%;
+
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e96c9a;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5a4050;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #e96c9a;
+        }
+
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            min-height: 90vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(255, 221, 235, 0.75),
+                    rgba(255, 244, 213, 0.75)
+                ),
+                url("https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            animation: fadeIn 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 85px);
+            color: #d84f83;
+            margin-bottom: 15px;
+
+            text-shadow: 3px 3px 0px #ffd6e6;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 14px 30px;
+
+            border-radius: 30px;
+
+            background: #e96c9a;
+            color: white;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            box-shadow: 0 8px 20px rgba(233,108,154,0.3);
+
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            transform: translateY(-5px) scale(1.03);
+            background: #d94d82;
+        }
+
+
+        /* ---------- ABOUT ---------- */
+
+        .about {
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        .about h2,
+        .menu h2 {
+            font-size: 38px;
+            color: #d84f83;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+
+        /* ---------- MENU ---------- */
+
+        .menu {
+            padding: 80px 8%;
+            background: #fff0f6;
+            text-align: center;
+        }
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 25px;
+
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(100,50,80,0.1);
+
+            transition: 0.4s;
+
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            color: #d84f83;
+            margin-bottom: 8px;
+            font-size: 23px;
+        }
+
+        .price {
+            display: inline-block;
+            margin-top: 12px;
+
+            padding: 6px 15px;
+
+            background: #ffe0ec;
+            color: #c63f70;
+
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+
+        /* ---------- SPECIAL SECTION ---------- */
+
+        .special {
+            padding: 80px 10%;
+            text-align: center;
+
+            background: linear-gradient(
+                135deg,
+                #fff2b8,
+                #ffd9e8,
+                #dff7ff
+            );
+        }
+
+        .special h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .special p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            padding: 30px;
+            text-align: center;
+
+            background: #4a3040;
+            color: white;
+        }
+
+
+        /* ---------- DARK MODE ---------- */
+
+        body.dark {
+            background: #211a24;
+            color: #f8eaf1;
+        }
+
+        body.dark nav {
+            background: rgba(40,30,45,0.95);
+        }
+
+        body.dark nav a {
+            color: #f8eaf1;
+        }
+
+        body.dark .menu {
+            background: #2b202d;
+        }
+
+        body.dark .card {
+            background: #382a39;
+        }
+
+        body.dark .about h2,
+        body.dark .menu h2 {
+            color: #ff9fc0;
+        }
+
+
+        /* ---------- ANIMATION ---------- */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+            🍓 Sweet Café
+        </div>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+
+            <button class="button" onclick="toggleDarkMode()">
+                🌙
+            </button>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <h1>Sweet Café 🍓</h1>
+
+        <p>
+            A tiny corner of happiness filled with
+            cakes, coffee, strawberries and good vibes. 💗
+        </p>
+
+        <a href="#menu" class="button">
+            Explore Menu ✨
+        </a>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <h2>Welcome! 🌸</h2>
+
+        <p>
+            Welcome to Sweet Café — a colorful little place
+            made for people who love delicious desserts,
+            cozy drinks and pretty things.
+            Grab your favorite treat and stay awhile! ☕🍰
+        </p>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section class="menu" id="menu">
+
+        <h2>Our Favorites 🍰</h2>
+
+        <p>
+            Pick your favorite sweet treat!
+        </p>
+
+
+        <div class="cards">
+
+
+            <!-- CARD 1 -->
+
+            <div class="card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
+                    alt="Chocolate cake"
+                >
+
+                <div class="card-content">
+
+                    <h3>Chocolate Cake 🍫</h3>
+
+                    <p>
+                        Soft, rich and chocolatey.
+                    </p>
+
+                    <span class="price">
+                        Rs. 450
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80"
+                    alt="Cupcake"
+                >
+
+                <div class="card-content">
+
+                    <h3>Pretty Cupcake 🧁</h3>
+
+                    <p>
+                        A tiny cupcake full of happiness.
+                    </p>
+
+                    <span class="price">
+                        Rs. 250
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1511081869372-9f3c8f3c9f44?auto=format&fit=crop&w=800&q=80"
+                    alt="Coffee"
+                >
+
+                <div class="card-content">
+
+                    <h3>Cozy Coffee ☕</h3>
+
+                    <p>
+                        Warm, creamy and comforting.
+                    </p>
+
+                    <span class="price">
+                        Rs. 300
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- SPECIAL -->
+
+    <section class="special">
+
+        <h2>Today's Special ✨</h2>
+
+        <p id="specialText">
+            Strawberry milkshake + cupcake = happiness! 🍓🧁
+        </p>
+
+        <button
+            class="button"
+            onclick="changeSpecial()"
+        >
+            Show me another one 💕
+        </button>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            Made with 💗 & HTML, CSS and JavaScript
+        </p>
+
+        <p>
+            © 2026 Sweet Café
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* DARK MODE */
+
+        function toggleDarkMode() {
+
+            document.body.classList.toggle("dark");
+
+        }
+
+
+        /* CHANGE SPECIAL */
+
+        function changeSpecial() {
+
+            const specials = [
+
+                "Strawberry milkshake + cupcake = happiness! 🍓🧁",
+
+                "Hot chocolate + cookies = cozy vibes! 🍪☕",
+
+                "Pancakes + strawberries = perfect morning! 🥞🍓",
+
+                "Ice cream + sprinkles = instant happiness! 🍦✨",
+
+                "Brownie + vanilla ice cream = YES PLEASE! 🍫🍨"
+
+            ];
+
+            const randomNumber =
+                Math.floor(Math.random() * specials.length);
+
+            document.getElementById("specialText").textContent =
+                specials[randomNumber];
+
+        }
+
+
+        /* CARD ANIMATION */
+
+        const cards =
+            document.querySelectorAll(".card");
+
+
+        const observer =
+            new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                    }
+
+                });
+
+            });
+
+
+        cards.forEach(card => {
+
+            observer.observe(card);
+
+        });
+
+    </script>
+
+
+</body>
+</html>
